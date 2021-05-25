@@ -5,6 +5,7 @@ import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.packages.json.web.token.view.JwtObjReqVM;
 import com.nicico.cost.framework.service.GeneralResponse;
 import com.nicico.cost.framework.service.exception.ApplicationException;
+import com.nicico.cost.jsonweb.service.enums.JsonWebException;
 import com.nicico.cost.jsonweb.service.token.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -91,9 +92,9 @@ public class JwtServiceImpl implements JwtService {
             Jwts.parser().setSigningKey(secretAppKeys).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(true);
         } catch (ExpiredJwtException e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -104,7 +105,7 @@ public class JwtServiceImpl implements JwtService {
         } catch (ExpiredJwtException e) {
             return GeneralResponse.successCustomResponse(e.getClaims());
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -113,9 +114,9 @@ public class JwtServiceImpl implements JwtService {
             Claims claims = Jwts.parser().setSigningKey(secretAppKeys).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims);
         } catch (ExpiredJwtException e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -126,7 +127,7 @@ public class JwtServiceImpl implements JwtService {
         } catch (ExpiredJwtException e) {
             return GeneralResponse.successCustomResponse(e.getClaims());
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -135,9 +136,9 @@ public class JwtServiceImpl implements JwtService {
             Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims);
         } catch (ExpiredJwtException e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -146,9 +147,9 @@ public class JwtServiceImpl implements JwtService {
             Claims claims = Jwts.parser().setSigningKey(secretAppKeys).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims.get(paramName, tClass));
         } catch (ExpiredJwtException e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -157,7 +158,7 @@ public class JwtServiceImpl implements JwtService {
         try {
             return GeneralResponse.successCustomResponse(claims.get(paramName, tClass));
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -166,7 +167,7 @@ public class JwtServiceImpl implements JwtService {
             Claims claims = Jwts.parser().setSigningKey(secretAppKeys).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims);
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -177,7 +178,7 @@ public class JwtServiceImpl implements JwtService {
         } catch (ExpiredJwtException e) {
             return GeneralResponse.successCustomResponse(e.getClaims().get(paramName, tClass));
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -186,7 +187,7 @@ public class JwtServiceImpl implements JwtService {
             Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims.get(paramName, tClass));
         } catch (Exception e) {
-            throw applicationException.createApplicationException(ExceptionEnum.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
+            throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
 
