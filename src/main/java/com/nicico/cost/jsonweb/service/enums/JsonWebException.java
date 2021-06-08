@@ -16,5 +16,5 @@ public enum JsonWebException implements Message {
         public String key() {
             return this.name();
         }
-    };
+    }
 }
