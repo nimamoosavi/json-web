@@ -1,6 +1,6 @@
 package com.nicico.cost.jsonweb.service.enums;
 
-import com.nicico.cost.framework.utility.response.Message;
+import com.nicico.cost.framework.utility.view.Message;
 
 public enum JsonWebException implements Message {
 
