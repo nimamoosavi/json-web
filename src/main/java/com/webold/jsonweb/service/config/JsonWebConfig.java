@@ -1,4 +1,4 @@
-package com.nicico.cost.jsonweb.service.config;
+package com.webold.jsonweb.service.config;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

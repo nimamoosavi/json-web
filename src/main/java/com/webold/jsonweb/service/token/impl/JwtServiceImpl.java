@@ -1,13 +1,14 @@
-package com.nicico.cost.jsonweb.service.token.impl;
+package com.webold.jsonweb.service.token.impl;
 
-import com.nicico.cost.framework.domain.dto.BaseDTO;
-import com.nicico.cost.framework.enums.exception.ExceptionEnum;
-import com.nicico.cost.framework.packages.json.web.token.view.JwtObjReqVM;
-import com.nicico.cost.framework.service.GeneralResponse;
-import com.nicico.cost.framework.service.exception.ApplicationException;
-import com.nicico.cost.framework.service.exception.ServiceException;
-import com.nicico.cost.jsonweb.service.enums.JsonWebException;
-import com.nicico.cost.jsonweb.service.token.JwtService;
+import com.webold.framework.domain.dto.BaseDTO;
+import com.webold.framework.enums.exception.ExceptionEnum;
+import com.webold.framework.packages.json.web.token.view.JwtObjReqVM;
+import com.webold.framework.service.GeneralResponse;
+import com.webold.framework.service.exception.ApplicationException;
+import com.webold.framework.service.exception.ServiceException;
+import com.webold.jsonweb.service.enums.JsonWebException;
+import com.webold.jsonweb.service.token.JwtService;
+import com.webold.jsonweb.service.config.JsonWebConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -19,9 +20,6 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
-
-import static com.nicico.cost.jsonweb.service.config.JsonWebConfig.secretKey;
-import static com.nicico.cost.jsonweb.service.config.JsonWebConfig.signatureAlgorithm;
 
 @Component
 @RequiredArgsConstructor
@@ -56,7 +54,7 @@ public class JwtServiceImpl implements JwtService {
         claims.setId(jwtObjReqVM.getJti());
         claims.setIssuer(jwtObjReqVM.getIss());
         claims.putAll(jwtObjReqVM.getCustoms());
-        String compact = Jwts.builder().addClaims(claims).signWith(signatureAlgorithm, secretKey).compact();
+        String compact = Jwts.builder().addClaims(claims).signWith(JsonWebConfig.signatureAlgorithm, JsonWebConfig.secretKey).compact();
         return GeneralResponse.successCustomResponse(compact);
     }
 
@@ -80,7 +78,7 @@ public class JwtServiceImpl implements JwtService {
 
     public BaseDTO<Boolean> isValidWithoutCheckExpireTime(String jwt) {
         try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt);
+            Jwts.parser().setSigningKey(JsonWebConfig.secretKey).parseClaimsJws(jwt);
             return GeneralResponse.successCustomResponse(true);
         } catch (Exception e) {
             return GeneralResponse.successCustomResponse(false);
@@ -89,7 +87,7 @@ public class JwtServiceImpl implements JwtService {
 
     public BaseDTO<Boolean> isValid(String jwt) {
         try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
+            Jwts.parser().setSigningKey(JsonWebConfig.secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(true);
         } catch (ExpiredJwtException e) {
             throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
@@ -100,7 +98,7 @@ public class JwtServiceImpl implements JwtService {
 
     public BaseDTO<Claims> getJwtBodyWithoutCheckExpireTime(String jwt) {
         try {
-            Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
+            Claims claims = Jwts.parser().setSigningKey(JsonWebConfig.secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims);
         } catch (ExpiredJwtException e) {
             return GeneralResponse.successCustomResponse(e.getClaims());
@@ -111,7 +109,7 @@ public class JwtServiceImpl implements JwtService {
 
     public BaseDTO<Claims> getJwtBody(String jwt) {
         try {
-            Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
+            Claims claims = Jwts.parser().setSigningKey(JsonWebConfig.secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims);
         } catch (ExpiredJwtException e) {
             throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
@@ -144,7 +142,7 @@ public class JwtServiceImpl implements JwtService {
 
     public <R> BaseDTO<R> getJwtParam(String jwt, String paramName, Class<R> tClass) {
         try {
-            Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
+            Claims claims = Jwts.parser().setSigningKey(JsonWebConfig.secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims.get(paramName, tClass));
         } catch (ExpiredJwtException e) {
             throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_EXPIRED, HttpStatus.BAD_REQUEST);
@@ -164,7 +162,7 @@ public class JwtServiceImpl implements JwtService {
 
     public BaseDTO<Object> getJwtParam(String jwt) {
         try {
-            Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
+            Claims claims = Jwts.parser().setSigningKey(JsonWebConfig.secretKey).parseClaimsJws(jwt).getBody();
             return GeneralResponse.successCustomResponse(claims);
         } catch (Exception e) {
             throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);

@@ -1,6 +1,6 @@
-package com.nicico.cost.jsonweb.service.enums;
+package com.webold.jsonweb.service.enums;
 
-import com.nicico.cost.framework.utility.view.Message;
+import com.webold.framework.utility.view.Message;
 
 public enum JsonWebException implements Message {
 
