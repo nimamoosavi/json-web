@@ -1,14 +1,14 @@
-package com.webold.jsonweb.service.token.impl;
+package app.ladderproject.jsonweb.service.token.impl;
 
+import app.ladderproject.jsonweb.service.config.JsonWebConfig;
 import com.webold.framework.domain.dto.BaseDTO;
 import com.webold.framework.enums.exception.ExceptionEnum;
 import com.webold.framework.packages.json.web.token.view.JwtObjReqVM;
 import com.webold.framework.service.GeneralResponse;
 import com.webold.framework.service.exception.ApplicationException;
 import com.webold.framework.service.exception.ServiceException;
-import com.webold.jsonweb.service.enums.JsonWebException;
-import com.webold.jsonweb.service.token.JwtService;
-import com.webold.jsonweb.service.config.JsonWebConfig;
+import app.ladderproject.jsonweb.service.enums.JsonWebException;
+import app.ladderproject.jsonweb.service.token.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

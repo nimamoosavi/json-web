@@ -1,4 +1,4 @@
-package com.webold.jsonweb.service.enums;
+package app.ladderproject.jsonweb.service.enums;
 
 import com.webold.framework.utility.view.Message;
 

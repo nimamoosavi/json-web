@@ -1,4 +1,4 @@
-package com.webold.jsonweb.service.config;
+package app.ladderproject.jsonweb.service.config;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

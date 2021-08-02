@@ -8,7 +8,7 @@
         <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.webold</groupId>
+    <groupId>app.ladderproject</groupId>
     <artifactId>json-web</artifactId>
     <version>1.0.1-Released</version>
     <name>json-web</name>
@@ -34,8 +34,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.webold</groupId>
-            <artifactId>framework</artifactId>
+            <groupId>app.ladderproject</groupId>
+            <artifactId>core</artifactId>
             <version>1.0.1-Released</version>
         </dependency>
         <!-- For Working with Json Web Tokens (JWT) -->
@@ -83,22 +83,4 @@
             </plugin>
         </plugins>
     </build>
-
-        <distributionManagement>
-            <snapshotRepository>
-                <id>nexus-snapshots</id>
-                <url>http://devops01.icico.net.ir/nexus/repository/maven-snapshots/</url>
-            </snapshotRepository>
-            <repository>
-                <id>nexus-releases</id>
-                <url>http://devops01.icico.net.ir/nexus/repository/maven-releases/</url>
-            </repository>
-        </distributionManagement>
-        <repositories>
-            <repository>
-                <id>nexus-public</id>
-                <url>http://devops01.icico.net.ir/nexus/repository/maven-public/</url>
-            </repository>
-    </repositories>
-
 </project>
