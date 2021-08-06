@@ -189,15 +189,4 @@ public class JwtServiceImpl implements JwtService {
             throw applicationException.createApplicationException(JsonWebException.JWT_TOKEN_INVALID, HttpStatus.BAD_REQUEST);
         }
     }
-
-    public BaseDTO<String> hash(String text) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(text.getBytes(StandardCharsets.UTF_8));
-            String hashResult = Base64.getEncoder().encodeToString(hash);
-            return successCustomResponse(hashResult);
-        } catch (Exception e) {
-            throw applicationException.createApplicationException(INTERNAL_SERVER, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }
