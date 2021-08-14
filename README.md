@@ -9,7 +9,9 @@ mongo client project , jdbc client project or micro client or your implementatio
 
 ## Structure
 
-[[/images/jwt.jpeg | "jwt"]]
+![json-web Diagram](https://github.com/nimamoosavi/json-web/wiki/images/jwt.jpeg)
+
+
 ## methode
 BaseDTO<String> generateJwt(JwtObjReqVM jwtObjReqVM, String secretKey, SignatureAlgorithm signatureAlgorithm);
 > create a jwt with your secretKey for sign json web token
